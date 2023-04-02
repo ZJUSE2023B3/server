@@ -11,6 +11,7 @@ Spring Boot Server For ZJUSE2023B3
   - [ ] 编码方式
   - [ ] ...
 - [ ] 数据库设计
+- ![](resource/类图.png)
 - [ ] 登录等功能
   - [ ] 注册
   - [ ] 登录
