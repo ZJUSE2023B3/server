@@ -34,12 +34,6 @@ public class WebSocketController extends TextWebSocketHandler {
     @Autowired
     private CacheManager cacheManager;
 
-    //private final ConcurrentHashMap<String, WebSocketSession> clientidSessionMap = new ConcurrentHashMap<>();
-
-
-
-    private final Set<WebSocketSession> sessions = new CopyOnWriteArraySet<>();
-
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception{
         // 获取客户端发送的 user_id
@@ -52,8 +46,6 @@ public class WebSocketController extends TextWebSocketHandler {
         // 将 user_id 作为 client_id 存入 userid_session_map
         assert cache != null;
         cache.put(user_id,session);
-
-        sessions.add(session);
     }
 
     @Override
@@ -65,22 +57,8 @@ public class WebSocketController extends TextWebSocketHandler {
         Cache cache = cacheManager.getCache("userid_session_map");
         assert cache != null;
         cache.evict(user_id);
-        sessions.remove(session);
     }
-
-    public void broadcastMessage(String message) {
-        for (WebSocketSession session : sessions) {
-            executorService.submit(() -> {
-                try {
-                    if (session.isOpen()) {
-                        session.sendMessage(new TextMessage(message));
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-        }
-    }
+    
     public void sendMessage(String message,int user_id){
         Cache cache = cacheManager.getCache("userid_session_map");
         assert cache != null;
@@ -95,5 +73,9 @@ public class WebSocketController extends TextWebSocketHandler {
                 e.printStackTrace();
             }
         });
+    }
+    @Override
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        sendMessage(message.getPayload(),(int)session.getAttributes().get("user_id"));
     }
 }
