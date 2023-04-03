@@ -15,5 +15,4 @@ public interface UserMapper {
 
     @Insert("insert into User(user_name,user_passwd,email) values(#{user_name},#{user_passwd},#{email})")
     int insert(String user_name,String user_passwd,String email);
-
 }
