@@ -29,3 +29,4 @@ CREATE TABLE IF NOT EXISTS chatRecord (
     FOREIGN KEY (user_id) REFERENCES User(user_id),
     FOREIGN KEY (friend_id) REFERENCES User(user_id)
 );
+
