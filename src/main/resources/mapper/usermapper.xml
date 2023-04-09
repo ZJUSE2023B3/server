@@ -17,7 +17,7 @@
     UPDATE
      user
     SET
-     user_passwd=#{user_passwod},
+     user_passwd=#{user_passwd},
     WHERE
      user_id=#{user_id} 
     </update>
