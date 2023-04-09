@@ -1,6 +1,6 @@
 package zju.se.b3.server.service;
 
-import zju.se.b3.server.entity.Friend;
+import zju.se.b3.server.entity.User;
 import zju.se.b3.server.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,20 +12,18 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public List<Friend> findall()
+    public List<User> FindbyId(Integer user_id)
     {
-        return userMapper.findall();
+      return userMapper.FindbyId(user_id);
     }
-    public List<Friend> Select(Integer user_id)
+
+    public Integer ChangePassword(User user)
     {
-        return userMapper.Select(user_id);
+      return userMapper.ChangePassword(user);
     }
-    public Integer Add(Friend user)
+
+    public Integer Update(User user)
     {
-        return userMapper.Add(user);
-    }
-    public Integer Delete(Friend user)
-    {
-        return userMapper.Delete(user);
+      return userMapper.Update(user);
     }
 }
