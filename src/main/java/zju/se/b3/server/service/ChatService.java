@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import zju.se.b3.server.entity.chatRecord;
 import zju.se.b3.server.mapper.ChatMapper;
 
+import java.util.List;
+
 @Service
 public class ChatService {
     @Autowired
@@ -21,8 +23,8 @@ public class ChatService {
         chatmapper.insert(chatrecord);
     }
 
-    public chatRecord[] SearchRecord(Long user_id){
-        return chatmapper.findByUserid(user_id);
+    public List<chatRecord> SearchRecord(Long user_id, Long friend_id){
+        return chatmapper.findByUserid(user_id,friend_id);
     }
 
 }

@@ -1,9 +1,11 @@
 package zju.se.b3.server.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "charRecord")
+@Data
 public class chatRecord {
 
     @Id
@@ -20,6 +22,10 @@ public class chatRecord {
 
     @Column(name = "created_at")
     private String created_at;
+
+    public chatRecord() {
+
+    }
 
     public String to_String(){
         String s = "id:"+id.toString()+" user_id:"+user_id.toString()+ " friend_id:"+friend_id.toString()

@@ -6,31 +6,25 @@ import zju.se.b3.server.mapper.ChatMapper;
 import zju.se.b3.server.service.ChatService;
 import zju.se.b3.server.entity.chatRecord;
 
+import java.util.*;
+
 @RestController
-@RequestMapping("/charRecord")
+@RequestMapping("/chatRecord")
 public class ChatController {
     @Autowired
     private ChatService chatService;
-    @PostMapping("/search")
-    public String[] search(@RequestParam Long user_id){
-        chatRecord[] records = chatService.SearchRecord(user_id);
-        String[] s = new String[records.length];
-        for(int i = 0;i<records.length;i++)
-        {
-            s[i] = records[i].to_String();
-        }
-        return s;
+    @GetMapping("/search")
+    public List<chatRecord> search(@RequestParam Long user_id, @RequestParam Long friend_id){
+        return chatService.SearchRecord(user_id,friend_id);
     }
 
-    @PostMapping("/delete")
+    @DeleteMapping("/delete")
     public void delete(@RequestParam Long id){
         chatService.DeleteRecord(id);
     }
 
     @PostMapping("/newchat")
-    public void newchat(@RequestBody Long id, @RequestBody Long user_id, @RequestBody Long friend_id,
-                        @RequestBody String message, @RequestBody String creat_at){
-        chatRecord record = new chatRecord(id, user_id, friend_id, message, creat_at);
-        chatService.InsertRecord(record);
+    public void newchat(@RequestBody chatRecord onerecord){
+        chatService.InsertRecord(onerecord);
     }
 }
