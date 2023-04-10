@@ -3,6 +3,7 @@ package zju.se.b3.server.mapper;
 
 import org.apache.ibatis.annotations.*;
 import zju.se.b3.server.entity.Friend;
+import zju.se.b3.server.entity.User;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -24,5 +25,9 @@ public interface UserMapper {
 
     public Integer Add(Friend user);
     public Integer Delete(Friend user);
+    
+    public List<User> FindbyId(Integer user_id);
+    public Integer ChangePassword(User user);
+    public Integer Update(User user);
 
 }
