@@ -49,9 +49,9 @@ public class UserService {
       return userMapper.ChangePassword(user);
     }
 
-    public Integer Update(User user)
+    public Integer ChangeEmail(User user)
     {
-      return userMapper.Update(user);
+      return userMapper.ChangeEmail(user);
     }
 }
 

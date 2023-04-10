@@ -18,15 +18,15 @@ public class UserController {
         return userService.FindbyId(user_id);
     }
 
-    @PutMapping("/update")
+    @PostMapping("/update/email")
     public Integer Update(@RequestBody User user)
     {
-        return userMapper.Update(user);
+        return userService.ChangeEmail(user);
     }
 
-    @PostMapping("password/change")
+    @PostMapping("/update/passwd")
     public Integer ChangePassword(@RequestBody User user)
     {
-      return userMapper.ChangePassword(user);
+      return userService.ChangePassword(user);
     }
 }

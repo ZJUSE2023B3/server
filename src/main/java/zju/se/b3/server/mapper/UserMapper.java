@@ -25,9 +25,12 @@ public interface UserMapper {
 
     public Integer Add(Friend user);
     public Integer Delete(Friend user);
-    
+
+    @Select("select * from User where user_id = #{user_id}")
     public List<User> FindbyId(Integer user_id);
+    @Update("update User set user_passwd = #{user_passwd} where user_id = #{user_id}")
     public Integer ChangePassword(User user);
-    public Integer Update(User user);
+    @Update("update User set email = #{email} where user_id = #{user_id}")
+    public Integer ChangeEmail(User user);
 
 }

@@ -2,27 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zju.se.b3.server.mapper.UserMapper">
-
-    <update id="Update">
-    UPDATE 
-     user
-    SET 
-     user_name=#{user_name},
-     user_email=#{email},
-    WHERE 
-     user_id=#{user_id},
-    </update>
-
-    <update id="ChangePassword">
-    UPDATE
-     user
-    SET
-     user_passwd=#{user_passwd},
-    WHERE
-     user_id=#{user_id} 
-    </update>
-
-    <select id="FindbyId" resultType="zju.se.b3.sever.entity.User">
-    SELECT * FROM user WHERE user_id=#{user_id} 
+    <resultMap id="BaseResultMap" type="zju.se.b3.server.entity.Friend">
+        <result column="user_id" jdbcType="INTEGER" property="user_id" />
+        <result column="friend_id" jdbcType="INTEGER" property="friend_id" />
+    </resultMap>
+    <select id="Select"   resultType="zju.se.b3.server.entity.Friend">
+        select friend_id from friend where user_id=#{user_id};
     </select>
+    <select id="findall"  resultType="zju.se.b3.server.entity.Friend">
+        select *  from friend ;
+    </select>
+    <insert id="Add" parameterType="zju.se.b3.server.entity.Friend">
+        insert into friend (user_id,friend_id) values (#{user_id},#{friend_id});
+    </insert>
+    <delete id="Delete" parameterType="zju.se.b3.server.entity.Friend">
+        delete from friend where user_id=#{user_id} and friend_id=#{friend_id};
+    </delete>
 </mapper>
