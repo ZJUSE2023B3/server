@@ -1,8 +1,10 @@
 package zju.se.b3.server.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+
+import org.apache.ibatis.annotations.*;
+import zju.se.b3.server.entity.Friend;
+import org.springframework.stereotype.Repository;
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -15,4 +17,12 @@ public interface UserMapper {
 
     @Insert("insert into User(user_name,user_passwd,email) values(#{user_name},#{user_passwd},#{email})")
     int insert(String user_name,String user_passwd,String email);
+    
+    public List<Friend> findall();
+
+    public List<Friend> Select(Integer user_id);
+
+    public Integer Add(Friend user);
+    public Integer Delete(Friend user);
+
 }

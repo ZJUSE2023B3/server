@@ -1,17 +1,18 @@
 package zju.se.b3.server.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import zju.se.b3.server.service.UserService;
+import org.springframework.web.bind.annotation.*;
+import zju.se.b3.server.entity.Friend;
+import java.util.List;
 
 @RestController
 public class UserController {
 
     @Autowired
     private UserService userService;
+
 
     /**
      * URL service
@@ -46,6 +47,26 @@ public class UserController {
                      @RequestParam String user_passwd,
                      @RequestParam String email){
         return userService.logup(user_name,user_passwd,email);
+    }
+    @GetMapping("/friend/")
+    public List<Friend> findall()
+    {
+        return userService.findall();
+    }
+    @GetMapping("/friend/{user_id}")
+    public List<Friend> Select(@PathVariable Integer user_id)
+    {
+        return userService.Select(user_id);
+    }
+    @PostMapping("/friend/add")
+    public Integer Add(@RequestBody Friend user)
+    {
+        return userService.Add(user);
+    }
+    @PostMapping("/friend/delete")
+    public Integer Delete(@RequestBody Friend user)
+    {
+        return userService.Delete(user);
     }
 
 }
