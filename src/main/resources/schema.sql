@@ -37,6 +37,17 @@ CREATE TABLE IF NOT EXISTS online(
     user_status VARCHAR(50) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES User(user_id)
-)
+);
+-- 检查是否存在数据表 location，如果不存在则创建
+CREATE TABLE IF NOT EXISTS Location(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    x VARCHAR(50) NOT NULL,
+    y VARCHAR(50) NOT NULL,
+    z VARCHAR(50) NOT NULL,
+    last_update VARCHAR(50) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
 
 
