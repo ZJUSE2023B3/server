@@ -48,6 +48,13 @@ CREATE TABLE IF NOT EXISTS Location(
     last_update VARCHAR(50) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
+-- 检查是否存在数据表 location，如果不存在则创建
+CREATE TABLE IF NOT EXISTS ServerLog(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    log TEXT,
+    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 
 
 

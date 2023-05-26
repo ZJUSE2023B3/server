@@ -2,10 +2,13 @@ package zju.se.b3.server.controller;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
+import zju.se.b3.server.entity.ServerLog;
 import zju.se.b3.server.entity.online;
+import zju.se.b3.server.mapper.ServerLogMapper;
 import zju.se.b3.server.mapper.UserMapper;
 import zju.se.b3.server.mapper.onlineMapper;
 import zju.se.b3.server.service.OnlineService;
+import zju.se.b3.server.service.ServerLogService;
 import zju.se.b3.server.service.UserService;
 
 import java.time.LocalDateTime;
@@ -17,6 +20,8 @@ public class LoginController {
     private UserService userService;
     @Autowired
     private OnlineService onlineService;
+    @Autowired
+    private ServerLogService serverLogService;
 
     /**
      * URL service
@@ -34,6 +39,7 @@ public class LoginController {
                      @RequestParam String user_passwd){
         int res =  userService.login(user_name,user_passwd);
         onlineService.insert(user_name);
+        serverLogService.insert(user_name,"login");
         return res;
     }
     /**
@@ -54,6 +60,7 @@ public class LoginController {
                      @RequestParam String email){
         int res =  userService.logup(user_name,user_passwd,email);
         onlineService.insert(user_name);
+        serverLogService.insert(user_name,"logup and login");
         return res;
     }
 }
