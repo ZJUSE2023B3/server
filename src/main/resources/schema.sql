@@ -29,4 +29,14 @@ CREATE TABLE IF NOT EXISTS chatRecord (
     FOREIGN KEY (user_id) REFERENCES User(user_id),
     FOREIGN KEY (friend_id) REFERENCES User(user_id)
 );
+-- 检查是否存在数据表 online，如果不存在则创建
+CREATE TABLE IF NOT EXISTS online(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    login_time VARCHAR(50) NOT NULL,
+    user_status VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
+)
+
 

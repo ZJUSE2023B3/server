@@ -19,3 +19,10 @@ INSERT INTO chatRecord (user_id, friend_id, message) VALUES
     (3, 1, 'I am fine, thank you.'),
     (2, 3, 'What are you doing?'),
     (3, 2, 'Nothing much.');
+
+-- 向 online 表中插入测试数据
+INSERT INTO online(user_id, login_time, user_status) VALUES
+    (1,'2023.05.23.16:30','normal'),
+    (2,'2023.05.23.17:30','normal'),
+    (3,'2023.05.24.16:00','exception'),
+    (4,'2023.05.25.12:23','normal')

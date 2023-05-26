@@ -13,6 +13,9 @@ public interface UserMapper {
     @Select("select count(*) from User where user_name = #{user_name}")
     int select_by_username(String user_name);
 
+    @Select("select user_id from User where user_name = #{user_name}")
+    int select_id_by_username(String user_name);
+
     @Select("select count(*) from User where user_name = #{user_name} and user_passwd = #{user_passwd}")
     int select_by_username_and_passwd(String user_name,String user_passwd);
 
