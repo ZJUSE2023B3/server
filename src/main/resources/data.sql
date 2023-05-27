@@ -25,7 +25,7 @@ INSERT INTO online(user_id, login_time, user_status) VALUES
     (1,'2023.05.23.16:30','normal'),
     (2,'2023.05.23.17:30','normal'),
     (3,'2023.05.24.16:00','exception'),
-    (4,'2023.05.25.12:23','normal')
+    (4,'2023.05.25.12:23','normal');
 -- 向 online 表中插入测试数据
 INSERT INTO Location(user_id, x, y, z, last_update) VALUES
     (1,'233','456','123','2023.05.26.12:00'),
